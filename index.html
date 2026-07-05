@@ -323,30 +323,84 @@
       border-color: var(--coral);
       box-shadow: 0 0 0 4px rgba(232,52,78,.12);
     }
+    .role-picker-field {
+      margin: 10px 0 28px;
+      padding: 22px;
+      border: 3px solid rgba(232,52,78,.92);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(232,52,78,.18), transparent 30%),
+        linear-gradient(135deg, #fff6f8, #ffffff 48%, #fff0f3);
+      box-shadow: 0 20px 48px rgba(232,52,78,.16);
+      position: relative;
+      overflow: hidden;
+    }
+    .role-picker-field::before {
+      content: '👈 קודם בוחרים תפקיד';
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--coral);
+      color: var(--white);
+      font-weight: 900;
+      margin-bottom: 12px;
+      box-shadow: 0 10px 22px rgba(232,52,78,.25);
+    }
+    .role-picker-field .legend {
+      font-size: 1.18rem;
+      margin-bottom: 14px;
+    }
     .role-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
     .role-card {
       position: relative;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 20px;
+      border: 2px solid rgba(45,55,72,.12);
+      border-radius: 24px;
+      padding: 24px 22px 22px;
       cursor: pointer;
       background: #fff;
       transition: .18s ease;
-      min-height: 150px;
+      min-height: 174px;
+      box-shadow: 0 10px 26px rgba(45,55,72,.08);
     }
     .role-card input { position: absolute; opacity: 0; pointer-events: none; }
-    .role-card:hover { transform: translateY(-2px); border-color: rgba(232,52,78,.45); }
+    .role-card:hover { transform: translateY(-3px); border-color: rgba(232,52,78,.55); box-shadow: 0 16px 34px rgba(45,55,72,.13); }
     .role-card:has(input:checked) {
       border-color: var(--coral);
-      box-shadow: 0 12px 32px rgba(232,52,78,.14);
-      background: linear-gradient(135deg, #fff, #fff4f6);
+      box-shadow: 0 18px 42px rgba(232,52,78,.22);
+      background: linear-gradient(135deg, #fff, #fff1f4);
     }
-    .role-card strong { display: block; font-size: 1.2rem; color: var(--ink-2); margin-bottom: 8px; }
-    .role-card span { display: block; color: var(--muted); }
+    .role-card:has(input:checked)::after {
+      content: 'נבחר ✓';
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      min-height: 28px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--coral);
+      color: var(--white);
+      font-size: .82rem;
+      font-weight: 900;
+    }
+    .role-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: inline-grid !important;
+      place-items: center;
+      background: var(--soft);
+      color: var(--coral-dark) !important;
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+    .role-card strong { display: block; font-size: 1.24rem; color: var(--ink-2); margin-bottom: 8px; }
+    .role-card span:not(.role-icon) { display: block; color: var(--muted); }
     .question-block {
       border: 1px solid var(--line);
       border-radius: 24px;
@@ -605,21 +659,22 @@
           </div>
           <div class="form-wrap">
             <form id="candidateForm" novalidate>
-              <div class="field">
+              <div class="field role-picker-field">
                 <span class="legend">בחירת משרה *</span>
                 <div class="role-grid" role="radiogroup" aria-label="בחירת משרה">
                   <label class="role-card">
                     <input type="radio" name="role" value="מנהל/ת קמפיינים ממומנים" required>
+                    <span class="role-icon" aria-hidden="true">🎯</span>
                     <strong>מנהל/ת קמפיינים ממומנים</strong>
-                    <span>שאלון ייעודי לקמפיינים, מדידה, ניתוח ביצועים ואופטימיזציה.</span>
+                    <span>שאלון ייעודי ל-PPC, טרקינג, אופטימיזציה, לקוחות וקייסים מקצועיים.</span>
                   </label>
                   <label class="role-card">
                     <input type="radio" name="role" value="מנהל/ת קריאייטיב ולקוחות" required>
+                    <span class="role-icon" aria-hidden="true">🎨</span>
                     <strong>מנהל/ת קריאייטיב ולקוחות</strong>
                     <span>שאלון מלא לניהול לקוח, קריאייטיב, תהליכים ו-AI.</span>
                   </label>
                 </div>
-                <div class="notice hidden" id="campaignNotice">השאלון למשרת מנהל/ת קמפיינים ממומנים ייפתח כאן בהמשך. כרגע ניתן לשלוח פרטי קשר בלבד.</div>
               </div>
 
               <section id="creativeQuestionnaire" class="hidden" aria-live="polite">
@@ -761,6 +816,70 @@
                 </div>
               </section>
 
+              <section id="ppcQuestionnaire" class="hidden" aria-live="polite">
+                <div class="panel" style="box-shadow:none; margin-bottom:22px;">
+                  <div class="panel-head">
+                    <div>
+                      <h2>מבחן קבלה — קמפיינר/ית PPC</h2>
+                      <p>ענו בצורה מקצועית, מסודרת ופרקטית. אנחנו בודקים חשיבה, סדר עבודה, הבנת מדידה ויכולת להסביר החלטות.</p>
+                    </div>
+                    <span class="score-pill">100 נק׳</span>
+                  </div>
+                </div>
+
+                <div class="question-block">
+                  <div class="question-top"><h3>חלק 1 — שאלות מקצועיות: PPC וטרקינג</h3><span class="points">40 נק׳</span></div>
+                  <p class="hint">מומלץ לענות קצר, ברור ועם דוגמאות מהשטח כשאפשר.</p>
+                </div>
+
+                <div class="question-block"><div class="question-top"><h3>1. מבנה קמפיין Search חדש</h3><span class="points">4 נק׳</span></div><p class="hint">איך תבנה/י Structure ללקוח חדש — כמה קמפיינים, כמה קבוצות מודעות, ולפי מה מחלקים?</p><label for="ppcProfessional1">תשובה</label><textarea id="ppcProfessional1" name="ppc_professional_q1" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>2. שיטות בידינג בגוגל</h3><span class="points">4 נק׳</span></div><p class="hint">מה ההבדל בין Manual CPC, Maximize Conversions ו-Target CPA/ROAS, ומתי תבחר/י בכל אחת?</p><label for="ppcProfessional2">תשובה</label><textarea id="ppcProfessional2" name="ppc_professional_q2" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>3. Performance Max</h3><span class="points">4 נק׳</span></div><p class="hint">מה היתרונות והחסרונות של פימקס, ואיך מתמודדים עם חוסר השקיפות / Black Box?</p><label for="ppcProfessional3">תשובה</label><textarea id="ppcProfessional3" name="ppc_professional_q3" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>4. Meta Advantage+ Shopping / Sales</h3><span class="points">4 נק׳</span></div><p class="hint">מה זה, ומתי כדאי או לא כדאי להשתמש בקמפיינים האלה?</p><label for="ppcProfessional4">תשובה</label><textarea id="ppcProfessional4" name="ppc_professional_q4" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>5. Pixel מול CAPI</h3><span class="points">4 נק׳</span></div><p class="hint">מה ההבדל בין Pixel רגיל ל-Conversions API במטא, ולמה כמעט תמיד מחברים את שניהם?</p><label for="ppcProfessional5">תשובה</label><textarea id="ppcProfessional5" name="ppc_professional_q5" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>6. בעיית טרקינג ודאטה חסרה</h3><span class="points">4 נק׳</span></div><p class="hint">איך תאבחן/י ותתקן/י בעיית דאטה חסרה או שגויה, למשל קונברשנים שלא נספרים?</p><label for="ppcProfessional6">תשובה</label><textarea id="ppcProfessional6" name="ppc_professional_q6" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>7. Quality Score ו-Relevance</h3><span class="points">4 נק׳</span></div><p class="hint">מה זה Quality Score בגוגל ו-Relevance / Diagnostics במטא, ואיך הם משפיעים על עלות הקליק?</p><label for="ppcProfessional7">תשובה</label><textarea id="ppcProfessional7" name="ppc_professional_q7" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>8. Native — Taboola / Outbrain</h3><span class="points">4 נק׳</span></div><p class="hint">במה נייטיב שונה מ-Search / Social, ולאילו לקוחות או מטרות הוא הכי מתאים?</p><label for="ppcProfessional8">תשובה</label><textarea id="ppcProfessional8" name="ppc_professional_q8" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>9. קמפיין שלא מנצל תקציב</h3><span class="points">4 נק׳</span></div><p class="hint">אילו 3–4 סיבות אפשריות תבדוק/י, ובאיזה סדר?</p><label for="ppcProfessional9">תשובה</label><textarea id="ppcProfessional9" name="ppc_professional_q9" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>10. תהליך אופטימיזציה שוטף</h3><span class="points">4 נק׳</span></div><p class="hint">איך נראה תהליך אופטימיזציה יומי / שבועי שלך לתיק לקוחות — מה בודקים קודם ובאיזו תדירות?</p><label for="ppcProfessional10">תשובה</label><textarea id="ppcProfessional10" name="ppc_professional_q10" data-required-when="ppc"></textarea></div>
+
+                <div class="question-block">
+                  <div class="question-top"><h3>חלק 2 — התנהלות מול לקוחות</h3><span class="points">20 נק׳</span></div>
+                </div>
+                <div class="question-block"><div class="question-top"><h3>1. לקוח נסער בגלל CPL</h3><span class="points">4 נק׳</span></div><p class="hint">לקוח מתקשר נסער כי ה-CPL עלה פי 2 השבוע. איך פותחים את השיחה?</p><label for="ppcClient1">תשובה</label><textarea id="ppcClient1" name="ppc_client_q1" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>2. Learning Phase</h3><span class="points">4 נק׳</span></div><p class="hint">איך מסבירים ללקוח לא-טכני מה זה Learning Phase ולמה הביצועים עלולים לרדת בהתחלת שינוי בקמפיין?</p><label for="ppcClient2">תשובה</label><textarea id="ppcClient2" name="ppc_client_q2" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>3. שינוי אסטרטגי דרסטי</h3><span class="points">4 נק׳</span></div><p class="hint">לקוח מבקש “תעצרו הכל ותעברו הכל לטיקטוק”, ואתם לא בטוחים שזה נכון מקצועית. איך מגיבים?</p><label for="ppcClient3">תשובה</label><textarea id="ppcClient3" name="ppc_client_q3" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>4. דוח / עדכון שבועי</h3><span class="points">4 נק׳</span></div><p class="hint">מה חייב להיות בדוח או עדכון שבועי טוב ללקוח, לדעתך?</p><label for="ppcClient4">תשובה</label><textarea id="ppcClient4" name="ppc_client_q4" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>5. תיעדוף בין לקוחות</h3><span class="points">4 נק׳</span></div><p class="hint">יש לך 5 לקוחות שדרשו תשומת לב היום במקביל. איך מתעדפים?</p><label for="ppcClient5">תשובה</label><textarea id="ppcClient5" name="ppc_client_q5" data-required-when="ppc"></textarea></div>
+
+                <div class="question-block">
+                  <div class="question-top"><h3>חלק 3 — קייסים לניתוח</h3><span class="points">25 נק׳</span></div>
+                </div>
+                <div class="question-block"><div class="question-top"><h3>1. CPL עלה פי 2</h3><span class="points">5 נק׳</span></div><p class="hint">ה-CPL של קמפיין Lead Gen עלה פי 2 בין שני שבועות, בלי שינוי מכוון בתקציב או בקהלים. מה שלושת הצעדים הראשונים שלך בשעה הקרובה?</p><label for="ppcCase1">תשובה</label><textarea id="ppcCase1" name="ppc_case_q1" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>2. קונברשנים לא נספרו</h3><span class="points">5 נק׳</span></div><p class="hint">גילית שקונברשנים לא נספרו כראוי 3 ימים אחורה, והלקוח עדיין לא שם לב. מה עושים?</p><label for="ppcCase2">תשובה</label><textarea id="ppcCase2" name="ppc_case_q2" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>3. Learning Phase ממושך</h3><span class="points">5 נק׳</span></div><p class="hint">קמפיין נמצא ב-Learning Phase כבר שבועיים ולא יוצא ממנו. אילו סיבות תבדוק/י ואיזה שינויים תשקול/י?</p><label for="ppcCase3">תשובה</label><textarea id="ppcCase3" name="ppc_case_q3" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>4. הגדלת תקציב פי 3</h3><span class="points">5 נק׳</span></div><p class="hint">הלקוח רוצה להכפיל פי 3 את התקציב בבת אחת לקראת סוף החודש “כדי לנצל את התקציב”. איך מגיבים?</p><label for="ppcCase4">תשובה</label><textarea id="ppcCase4" name="ppc_case_q4" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>5. Frequency עולה, CTR יורד, CPM עולה</h3><span class="points">5 נק׳</span></div><p class="hint">מה הצעדים שלך בקמפיין מטא במצב כזה?</p><label for="ppcCase5">תשובה</label><textarea id="ppcCase5" name="ppc_case_q5" data-required-when="ppc"></textarea></div>
+
+                <div class="question-block">
+                  <div class="question-top"><h3>חלק 4 — שימוש בכלי AI</h3><span class="points">10 נק׳</span></div>
+                </div>
+                <div class="question-block"><div class="question-top"><h3>1. כלי AI בעבודה</h3><span class="points">3 נק׳</span></div><p class="hint">באילו כלי AI את/ה משתמש/ת היום בעבודה השוטפת?</p><label for="ppcAi1">תשובה</label><textarea id="ppcAi1" name="ppc_ai_q1" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>2. דוגמה קונקרטית לחיסכון בזמן / שיפור איכות</h3><span class="points">4 נק׳</span></div><p class="hint">תן/י דוגמה למשימה שבה AI חסך זמן משמעותי או שיפר איכות עבודה.</p><label for="ppcAi2">תשובה</label><textarea id="ppcAi2" name="ppc_ai_q2" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>3. איפה AI לא מספיק אמין?</h3><span class="points">3 נק׳</span></div><p class="hint">איפה לא היית סומך/ת עליו לבד בעבודת פרסום, ואיך מוודאים שהוא לא טועה?</p><label for="ppcAi3">תשובה</label><textarea id="ppcAi3" name="ppc_ai_q3" data-required-when="ppc"></textarea></div>
+
+                <div class="question-block">
+                  <div class="question-top"><h3>חלק 5 — שאלות ניהוליות: רזרבה ל-Team Lead</h3><span class="points">5 נק׳</span></div>
+                  <p class="hint">החלק הזה בודק פוטנציאל הובלה וניהול צוות, גם אם המשרה אינה מוגדרת כרגע Team Lead.</p>
+                </div>
+                <div class="question-block"><div class="question-top"><h3>1. קמפיינר/ית טוב/ה מול Team Lead טוב/ה</h3><span class="points">1 נק׳</span></div><p class="hint">מה, לדעתך, ההבדל בין קמפיינר/ית טובה לבין Team Lead טוב/ה? מה משתנה בתפקיד?</p><label for="ppcLead1">תשובה</label><textarea id="ppcLead1" name="ppc_lead_q1" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>2. מתן משוב לחבר צוות</h3><span class="points">1 נק׳</span></div><p class="hint">ספר/י על מצב שבו נתת משוב לחבר צוות על עבודה שלא הייתה ברמה הנדרשת. איך זה עבר?</p><label for="ppcLead2">תשובה</label><textarea id="ppcLead2" name="ppc_lead_q2" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>3. בקרת איכות בצוות</h3><span class="points">1 נק׳</span></div><p class="hint">איך היית בונה תהליך שמוודא שכל קמפיין שיוצא מהצוות עבר בקרה, בלי להיות זה שבודק כל דבר בעצמו?</p><label for="ppcLead3">תשובה</label><textarea id="ppcLead3" name="ppc_lead_q3" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>4. קליטת ג׳וניור ב-3 חודשים</h3><span class="points">1 נק׳</span></div><p class="hint">מה הופך קמפיינר/ית ג׳וניור למוצלח/ת ב-3 החודשים הראשונים, ומה התפקיד שלך בזה כמוביל/ה?</p><label for="ppcLead4">תשובה</label><textarea id="ppcLead4" name="ppc_lead_q4" data-required-when="ppc"></textarea></div>
+                <div class="question-block"><div class="question-top"><h3>5. חלוקת עומסים</h3><span class="points">1 נק׳</span></div><p class="hint">איך את/ה חושב/ת על חלוקת עומס בין אנשי צוות כשיש עומס לא שווה בין לקוחות?</p><label for="ppcLead5">תשובה</label><textarea id="ppcLead5" name="ppc_lead_q5" data-required-when="ppc"></textarea></div>
+              </section>
+
+
               <div class="question-block">
                 <div class="question-top"><h3>פרטים אישיים</h3><span class="points">חובה</span></div>
                 <div class="field"><label for="fullName">שם מלא *</label><input id="fullName" name="full_name" autocomplete="name" required></div>
@@ -811,6 +930,7 @@
   <script>
     const WEBHOOK_URL = 'https://n8n.youngmedia.co.il/webhook/10a42c29-79d4-439d-b90b-c03081283211';
     const CREATIVE_ROLE = 'מנהל/ת קריאייטיב ולקוחות';
+    const PPC_ROLE = 'מנהל/ת קמפיינים ממומנים';
 
     function captureTrackingParams() {
       const params = new URLSearchParams(window.location.search);
@@ -829,17 +949,19 @@
 
     const form = document.getElementById('candidateForm');
     const creativeQuestionnaire = document.getElementById('creativeQuestionnaire');
-    const campaignNotice = document.getElementById('campaignNotice');
+    const ppcQuestionnaire = document.getElementById('ppcQuestionnaire');
     const statusEl = document.getElementById('formStatus');
     const submitBtn = document.getElementById('submitBtn');
 
     document.querySelectorAll('input[name="role"]').forEach(input => {
       input.addEventListener('change', () => {
-        const isCreative = input.value === CREATIVE_ROLE && input.checked;
+        const selectedRole = document.querySelector('input[name="role"]:checked')?.value || '';
+        const isCreative = selectedRole === CREATIVE_ROLE;
+        const isPpc = selectedRole === PPC_ROLE;
         creativeQuestionnaire.classList.toggle('hidden', !isCreative);
-        campaignNotice.classList.toggle('hidden', isCreative);
-        document.querySelectorAll('[data-required-when="creative"]').forEach(field => {
-          field.required = isCreative;
+        ppcQuestionnaire.classList.toggle('hidden', !isPpc);
+        document.querySelectorAll('[data-required-when]').forEach(field => {
+          field.required = field.dataset.requiredWhen === (isCreative ? 'creative' : isPpc ? 'ppc' : '');
         });
       });
     });
@@ -884,15 +1006,43 @@
         creative_assignment_link: data.creative_assignment_link || '',
         additional_notes: data.additional_notes || '',
         answers: {
-          client_management_q1: data.client_management_q1 || '',
-          client_management_q2: data.client_management_q2 || '',
-          client_management_q3: data.client_management_q3 || '',
-          client_management_q4: data.client_management_q4 || '',
+          creative_client_management_q1: data.client_management_q1 || '',
+          creative_client_management_q2: data.client_management_q2 || '',
+          creative_client_management_q3: data.client_management_q3 || '',
+          creative_client_management_q4: data.client_management_q4 || '',
           creative_assignment_link: data.creative_assignment_link || '',
-          operations_task_1: data.operations_task_1 || '',
-          operations_task_2: data.operations_task_2 || '',
-          ai_task_1: data.ai_task_1 || '',
-          ai_task_2: data.ai_task_2 || ''
+          creative_operations_task_1: data.operations_task_1 || '',
+          creative_operations_task_2: data.operations_task_2 || '',
+          creative_ai_task_1: data.ai_task_1 || '',
+          creative_ai_task_2: data.ai_task_2 || '',
+          ppc_professional_q1: data.ppc_professional_q1 || '',
+          ppc_professional_q2: data.ppc_professional_q2 || '',
+          ppc_professional_q3: data.ppc_professional_q3 || '',
+          ppc_professional_q4: data.ppc_professional_q4 || '',
+          ppc_professional_q5: data.ppc_professional_q5 || '',
+          ppc_professional_q6: data.ppc_professional_q6 || '',
+          ppc_professional_q7: data.ppc_professional_q7 || '',
+          ppc_professional_q8: data.ppc_professional_q8 || '',
+          ppc_professional_q9: data.ppc_professional_q9 || '',
+          ppc_professional_q10: data.ppc_professional_q10 || '',
+          ppc_client_q1: data.ppc_client_q1 || '',
+          ppc_client_q2: data.ppc_client_q2 || '',
+          ppc_client_q3: data.ppc_client_q3 || '',
+          ppc_client_q4: data.ppc_client_q4 || '',
+          ppc_client_q5: data.ppc_client_q5 || '',
+          ppc_case_q1: data.ppc_case_q1 || '',
+          ppc_case_q2: data.ppc_case_q2 || '',
+          ppc_case_q3: data.ppc_case_q3 || '',
+          ppc_case_q4: data.ppc_case_q4 || '',
+          ppc_case_q5: data.ppc_case_q5 || '',
+          ppc_ai_q1: data.ppc_ai_q1 || '',
+          ppc_ai_q2: data.ppc_ai_q2 || '',
+          ppc_ai_q3: data.ppc_ai_q3 || '',
+          ppc_lead_q1: data.ppc_lead_q1 || '',
+          ppc_lead_q2: data.ppc_lead_q2 || '',
+          ppc_lead_q3: data.ppc_lead_q3 || '',
+          ppc_lead_q4: data.ppc_lead_q4 || '',
+          ppc_lead_q5: data.ppc_lead_q5 || ''
         },
         internal_score: {
           client_management: '',
