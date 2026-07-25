@@ -427,6 +427,14 @@
     }
     .scenario p { margin: 0 0 10px; }
     .scenario p:last-child { margin-bottom: 0; }
+
+    .section-intro { border-right: 5px solid var(--accent); background: linear-gradient(135deg, rgba(232,52,78,.10), rgba(255,255,255,.96)); }
+    .table-wrap { overflow-x: auto; margin: 14px 0 4px; border-radius: 16px; border: 1px solid var(--border); background: #fff; }
+    .data-table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: .94rem; }
+    .data-table th, .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+    .data-table th:first-child, .data-table td:first-child { text-align: right; font-weight: 800; }
+    .data-table th { background: rgba(45,55,72,.06); color: var(--dark); font-weight: 900; }
+    .data-table tr:last-child td { border-bottom: 0; }
     .quote {
       border-right: 4px solid var(--coral);
       background: #fff;
@@ -610,14 +618,14 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">מחלקת HR — Young Media</span>
+          <span class="eyebrow">מחלקת HR - Young Media</span>
           <h1>שאלון מקצועי למועמדים שרוצים לעבוד בפרפורמנס אמיתי</h1>
           <p>בחרו את המשרה הרלוונטית, מלאו את השאלון בצורה פרקטית וברורה, ותנו לנו להבין איך אתם חושבים, מתקשרים עם לקוחות ומייצרים תוצאות.</p>
         </div>
         <aside class="hero-card" aria-label="מידע על השאלון">
           <div class="stat-list">
             <div class="stat"><div class="stat-icon">01</div><div><strong>בחירת משרה</strong><span>השאלון נפתח לפי התפקיד שבחרתם.</span></div></div>
-            <div class="stat"><div class="stat-icon">02</div><div><strong>72 שעות להגשה</strong><span>מרגע קבלת המבחן — בלי לחץ, אבל גם בלי להיעלם.</span></div></div>
+            <div class="stat"><div class="stat-icon">02</div><div><strong>72 שעות להגשה</strong><span>מרגע קבלת המבחן - בלי לחץ, אבל גם בלי להיעלם.</span></div></div>
             <div class="stat"><div class="stat-icon">03</div><div><strong>3 היבטים מקצועיים</strong><span>קריאייטיב, עבודה מול לקוחות, ותהליכי עבודה חכמים.</span></div></div>
           </div>
         </aside>
@@ -681,7 +689,7 @@
                 <div class="panel" style="box-shadow:none; margin-bottom:22px;">
                   <div class="panel-head">
                     <div>
-                      <h2>שאלון מיון — מנהל/ת קריאייטיב ולקוחות</h2>
+                      <h2>שאלון מיון - מנהל/ת קריאייטיב ולקוחות</h2>
                       <p>משך מוערך: 45–60 דקות. ענו בצורה פרקטית, ברורה וישירה.</p>
                     </div>
                     <span class="score-pill">100 נק׳</span>
@@ -689,12 +697,12 @@
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק א׳ — ניהול לקוח</h3><span class="points">40 נק׳</span></div>
+                  <div class="question-top"><h3>חלק א׳ - ניהול לקוח</h3><span class="points">40 נק׳</span></div>
                   <p class="hint">החלק הזה בודק תקשורת מול לקוח, אחריות, חשיבה מספרית והבנה עסקית.</p>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>שאלה 1 — ניהול משבר CPA</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 1 - ניהול משבר CPA</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario">
                     <p>לקוח מנהל חנות איקומרס למוצרי טיפוח.</p>
                     <p>CPA ממוצע בחודש האחרון: <strong>38 ₪</strong>. אתמול ה-CPA קפץ ל-<strong>71 ₪</strong>.</p>
@@ -705,7 +713,7 @@
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>שאלה 2 — שימור לקוח בסיכון</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 2 - שימור לקוח בסיכון</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario">
                     <p>לקוח בתחום שירותי קוסמטיקה בארה״ב. מחיר: <strong>100$ לקליק</strong>. על כל <strong>5 קליקים</strong> נסגרת מכירה. הרווח למכירה: <strong>300$</strong>.</p>
                     <div class="quote">“מחיר הקליק עלה שוב. אנחנו מפסידים כסף וזה מרגיש כמו בזבוז. שוקל לעצור הכל.”</div>
@@ -715,21 +723,21 @@
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>שאלה 3 — ניהול ציפיות ללקוח חדש</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 3 - ניהול ציפיות ללקוח חדש</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario"><p>לקוח חדש בתחום תוספי התזונה. תקציב פרסום: <strong>8,000 ₪</strong>. AOV: <strong>180 ₪</strong>. יעד: <strong>200 הזמנות בחודש הראשון</strong>. התחרות גבוהה מאוד.</p></div>
                   <ol class="subitems"><li>האם היעד ריאלי? הציגו חישוב.</li><li>מה לדעתכם יעד ריאלי לחודש הראשון?</li><li>כתבו הודעת וואטסאפ לתיאום ציפיות לפני תחילת העבודה.</li></ol>
                   <label for="q3">תשובה</label><textarea id="q3" name="client_management_q3" data-required-when="creative"></textarea>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>שאלה 4 — אפסייל מבוסס נתונים</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 4 - אפסייל מבוסס נתונים</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario"><p>לקוח B2B מפרסם כיום רק בגוגל. עלות ליד ממוצעת: <strong>220 ₪</strong>. זיהיתם פוטנציאל משמעותי גם ב-Meta.</p><div class="quote">“סושיאל לא עובד לקהל שלי.”</div></div>
                   <ol class="subitems"><li>אילו נתונים תציגו לו?</li><li>איזה פיילוט תציעו ולמה?</li><li>כתבו את ההודעה שתשלחו לו.</li></ol>
                   <label for="q4">תשובה</label><textarea id="q4" name="client_management_q4" data-required-when="creative"></textarea>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק ב׳ — קריאייטיב וחשיבה שיווקית</h3><span class="points">25 נק׳</span></div>
+                  <div class="question-top"><h3>חלק ב׳ - קריאייטיב וחשיבה שיווקית</h3><span class="points">25 נק׳</span></div>
                   <div class="brief-intro">
                     <p><strong>אנחנו רוצים לבדוק את היכולות הקריאייטיביות שלכם.</strong></p>
                     <p>לכן אנחנו נותנים לכם 3 בריפים שונים ללקוחות מגוונים. המטרה היא לכתוב עבור כל בריף את הקופי של המודעה + בריף הנחיות לסטודיו.</p>
@@ -739,7 +747,7 @@
 
                   <div class="brief-grid" aria-label="בריפים למטלת הקריאייטיב">
                     <article class="brief-card">
-                      <h4>בריף 1 — סודהסטרים</h4>
+                      <h4>בריף 1 - סודהסטרים</h4>
                       <a class="brief-link" href="https://docs.google.com/document/d/1GN6-hXhwVzhrCnoQH4qTSeemUZRJZ9yayNLWp9cSU2s/edit?tab=t.0" target="_blank" rel="noopener">פתיחת בריף הלקוח</a>
                       <p><strong>המשימה:</strong> השקת סודהסטרים לעסקים וביסוס המותג בזירת ה-B2B.</p>
                       <p>הצעת הערך רלוונטית לכל סוגי העסקים, ובתוך העסקים נרצה לפנות למקבלי ההחלטות הרלוונטיים.</p>
@@ -757,14 +765,14 @@
                     </article>
 
                     <article class="brief-card">
-                      <h4>בריף 2 — פרופיטזון</h4>
+                      <h4>בריף 2 - פרופיטזון</h4>
                       <a class="brief-link" href="https://docs.google.com/document/d/1aRU_yg881iQhoPB636qSD9ODGieUMgBYkfvvSZb3PvU/edit?tab=t.0" target="_blank" rel="noopener">פתיחת בריף הלקוח</a>
-                      <p><strong>המשימה:</strong> ליצור 2 מודעות לטובת קהל משקיעים פוטנציאליים שישקיעו באפיק השקעה חדש — חנויות באמזון.</p>
+                      <p><strong>המשימה:</strong> ליצור 2 מודעות לטובת קהל משקיעים פוטנציאליים שישקיעו באפיק השקעה חדש - חנויות באמזון.</p>
                       <p>יש לשים דגש על משקיעים שיש ברשותם הון עצמי מעל <strong>140,000 ש״ח</strong>.</p>
                     </article>
 
                     <article class="brief-card">
-                      <h4>בריף 3 — גיוס עובדים | רשת מלונות דן</h4>
+                      <h4>בריף 3 - גיוס עובדים | רשת מלונות דן</h4>
                       <a class="brief-link" href="https://docs.google.com/document/d/1fTy89ToJBJiZHXUxHdarS7Hx-C4-UwrG_wywfM6gnhU/edit?tab=t.0" target="_blank" rel="noopener">פתיחת בריף הלקוח</a>
                       <p><strong>המשימה:</strong> ליצור 2 מודעות לטובת קמפיין לגיוס עובדים במלון דן אילת.</p>
                       <p>התפקידים המרכזיים לגיוס: קב״טים / מאבטחים + מלצרים.</p>
@@ -780,105 +788,349 @@
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק ג׳ — ניהול משימות ותהליכים</h3><span class="points">15 נק׳</span></div>
+                  <div class="question-top"><h3>חלק ג׳ - ניהול משימות ותהליכים</h3><span class="points">15 נק׳</span></div>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>משימה 1 — ניהול עומס ותיעדוף</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>משימה 1 - ניהול עומס ותיעדוף</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario"><p>יום ראשון בבוקר. יש לכם: לקוח שמחכה לדוח חודשי, לקוח שמחכה ל-4 מודעות חדשות, מעצב שמחכה לבריף, עורך וידאו שמחכה לפידבק, לקוח כועס שלא קיבל תשובה מאתמול, ופגישה בעוד שעתיים.</p></div>
                   <ol class="subitems"><li>מה סדר העדיפויות שלכם?</li><li>מה תעשו עם כל משימה?</li><li>איך תמנעו מצב כזה בעתיד?</li></ol>
                   <label for="q8">תשובה</label><textarea id="q8" name="operations_task_1" data-required-when="creative"></textarea>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>משימה 2 — איסוף בריף נכון</h3><span class="points">5 נק׳</span></div>
+                  <div class="question-top"><h3>משימה 2 - איסוף בריף נכון</h3><span class="points">5 נק׳</span></div>
                   <div class="scenario"><p>לקוח שולח הודעה: <strong>“אני רוצה לפרסם קורס השקעות.”</strong> זה כל המידע שקיבלתם.</p></div>
                   <p class="hint">כתבו 10 שאלות שחייבים לשאול לפני שמתחילים לעבוד.</p>
                   <label for="q9">תשובה</label><textarea id="q9" name="operations_task_2" data-required-when="creative"></textarea>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק ד׳ — AI וייעול עבודה</h3><span class="points">20 נק׳</span></div>
+                  <div class="question-top"><h3>חלק ד׳ - AI וייעול עבודה</h3><span class="points">20 נק׳</span></div>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>משימה 1 — יצירת קריאייטיב באמצעות AI</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>משימה 1 - יצירת קריאייטיב באמצעות AI</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario"><p>לקוח: מותג תכשיטים לנשים בגילאי <strong>25–45</strong>.</p></div>
                   <ol class="subitems"><li>Prompt מלא ליצירת תמונת פרסום.</li><li>Prompt מלא ליצירת סרטון קצר.</li><li>Prompt מלא ל-ChatGPT שייצר 5 וריאציות קופי שונות.</li></ol>
                   <label for="q10">תשובה</label><textarea id="q10" name="ai_task_1" data-required-when="creative"></textarea>
                 </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>משימה 2 — AI בעבודה מול לקוחות</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>משימה 2 - AI בעבודה מול לקוחות</h3><span class="points">10 נק׳</span></div>
                   <div class="scenario"><p>בחרו אחד מהתרחישים: סיכום פגישה, הכנת דוח ללקוח, ניסוח מענה ללקוח, בניית בריף לצוות.</p></div>
                   <ol class="subitems"><li>באיזה כלי AI תשתמשו?</li><li>מה בדיוק תעשו איתו?</li><li>מה ה-Prompt שתכתבו?</li><li>כמה זמן זה חוסך לכם לדעתכם?</li></ol>
                   <label for="q11">תשובה</label><textarea id="q11" name="ai_task_2" data-required-when="creative"></textarea>
                 </div>
               </section>
 
-              <section id="ppcQuestionnaire" class="hidden" aria-live="polite">
+                            <section id="ppcQuestionnaire" class="hidden" aria-live="polite">
                 <div class="panel" style="box-shadow:none; margin-bottom:22px;">
                   <div class="panel-head">
                     <div>
-                      <h2>מבחן קבלה — קמפיינר/ית PPC</h2>
-                      <p>ענו בצורה מקצועית, מסודרת ופרקטית. אנחנו בודקים חשיבה, סדר עבודה, הבנת מדידה ויכולת להסביר החלטות.</p>
+                      <h2>מבחן קבלה - קמפיינר/ית PPC</h2>
+                      <p>ענו בצורה מקצועית, מסודרת ופרקטית. המבחן בודק הבנה עסקית ומערכתית במערכות הפרסום: מבנה קמפיינים, חיבור ליעדים עסקיים, טרקינג, אופטימיזציה, ניתוח נתונים, עבודה מול לקוחות ופוטנציאל הובלה. חשוב לענות מתוך ניסיון אמיתי, עם סדר פעולות ברור ולא בסיסמאות.</p>
                     </div>
                     <span class="score-pill">100 נק׳</span>
                   </div>
                 </div>
 
-                <div class="question-block">
-                  <div class="question-top"><h3>חלק 1 — שאלות מקצועיות: PPC וטרקינג</h3><span class="points">40 נק׳</span></div>
-                  <p class="hint">מומלץ לענות קצר, ברור ועם דוגמאות מהשטח כשאפשר.</p>
+                <div class="question-block section-intro">
+                  <div class="question-top"><h3>סקשן 1 - גוגל חיפוש: מבניות קמפיין</h3><span class="points">20 נק׳</span></div>
+                  <div class="scenario"><p><strong>תרחיש:</strong> מותג קפה בוטיק שמוכר קפסולות תואמות נספרסו. המכירה מדף נחיתה יחיד - הזמנה חד-פעמית עם אופציה למנוי חוזר.<br><strong>נתונים:</strong> מחיר הזמנה ממוצע (AOV) ₪120 · רווח גולמי 40% · CVR בדף 3% · תקציב התחלתי ₪150 ליום.</p></div>
                 </div>
 
-                <div class="question-block"><div class="question-top"><h3>1. מבנה קמפיין Search חדש</h3><span class="points">4 נק׳</span></div><p class="hint">איך תבנה/י Structure ללקוח חדש — כמה קמפיינים, כמה קבוצות מודעות, ולפי מה מחלקים?</p><label for="ppcProfessional1">תשובה</label><textarea id="ppcProfessional1" name="ppc_professional_q1" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>2. שיטות בידינג בגוגל</h3><span class="points">4 נק׳</span></div><p class="hint">מה ההבדל בין Manual CPC, Maximize Conversions ו-Target CPA/ROAS, ומתי תבחר/י בכל אחת?</p><label for="ppcProfessional2">תשובה</label><textarea id="ppcProfessional2" name="ppc_professional_q2" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>3. Performance Max</h3><span class="points">4 נק׳</span></div><p class="hint">מה היתרונות והחסרונות של פימקס, ואיך מתמודדים עם חוסר השקיפות / Black Box?</p><label for="ppcProfessional3">תשובה</label><textarea id="ppcProfessional3" name="ppc_professional_q3" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>4. Meta Advantage+ Shopping / Sales</h3><span class="points">4 נק׳</span></div><p class="hint">מה זה, ומתי כדאי או לא כדאי להשתמש בקמפיינים האלה?</p><label for="ppcProfessional4">תשובה</label><textarea id="ppcProfessional4" name="ppc_professional_q4" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>5. Pixel מול CAPI</h3><span class="points">4 נק׳</span></div><p class="hint">מה ההבדל בין Pixel רגיל ל-Conversions API במטא, ולמה כמעט תמיד מחברים את שניהם?</p><label for="ppcProfessional5">תשובה</label><textarea id="ppcProfessional5" name="ppc_professional_q5" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>6. בעיית טרקינג ודאטה חסרה</h3><span class="points">4 נק׳</span></div><p class="hint">איך תאבחן/י ותתקן/י בעיית דאטה חסרה או שגויה, למשל קונברשנים שלא נספרים?</p><label for="ppcProfessional6">תשובה</label><textarea id="ppcProfessional6" name="ppc_professional_q6" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>7. Quality Score ו-Relevance</h3><span class="points">4 נק׳</span></div><p class="hint">מה זה Quality Score בגוגל ו-Relevance / Diagnostics במטא, ואיך הם משפיעים על עלות הקליק?</p><label for="ppcProfessional7">תשובה</label><textarea id="ppcProfessional7" name="ppc_professional_q7" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>8. Native — Taboola / Outbrain</h3><span class="points">4 נק׳</span></div><p class="hint">במה נייטיב שונה מ-Search / Social, ולאילו לקוחות או מטרות הוא הכי מתאים?</p><label for="ppcProfessional8">תשובה</label><textarea id="ppcProfessional8" name="ppc_professional_q8" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>9. קמפיין שלא מנצל תקציב</h3><span class="points">4 נק׳</span></div><p class="hint">אילו 3–4 סיבות אפשריות תבדוק/י, ובאיזה סדר?</p><label for="ppcProfessional9">תשובה</label><textarea id="ppcProfessional9" name="ppc_professional_q9" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>10. תהליך אופטימיזציה שוטף</h3><span class="points">4 נק׳</span></div><p class="hint">איך נראה תהליך אופטימיזציה יומי / שבועי שלך לתיק לקוחות — מה בודקים קודם ובאיזו תדירות?</p><label for="ppcProfessional10">תשובה</label><textarea id="ppcProfessional10" name="ppc_professional_q10" data-required-when="ppc"></textarea></div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 1. חלוקה לקמפיינים / קבוצות מודעות</h3></div>
+                  
+                  <p class="hint">איך תחלק/י את החשבון לקמפיינים ולקבוצות מודעות? פרט/י לפחות 3 קמפיינים/קבוצות והסבר/י את ההיגיון מאחורי ההפרדה.</p>
+                  
+                  <label for="ppc_google_q1">תשובה</label><textarea id="ppc_google_q1" name="ppc_google_q1" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 2. אותה מילת מפתח בכמה התאמות</h3></div>
+                  
+                  <p class="hint">העלינו את אותה מילת מפתח בשלוש התאמות - Broad / Phrase / Exact. האם נכון להתייחס אליהן כשוות ערך? מה ההבדל העסקי, ואיך זה משפיע על ניהול הבידינג והתקציב?</p>
+                  
+                  <label for="ppc_google_q2">תשובה</label><textarea id="ppc_google_q2" name="ppc_google_q2" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 3. אסטרטגיית בידינג בהתחלה</h3></div>
+                  
+                  <p class="hint">הקמפיין חדש, אפס נתוני המרה. באיזו אסטרטגיית בידינג תתחיל/י, מתי ולפי איזה תנאי תעבור/י לאסטרטגיה אחרת? התייחס/י גם ל-Manual CPC, Maximize Conversions ו-Target CPA/ROAS.</p>
+                  
+                  <label for="ppc_google_q3">תשובה</label><textarea id="ppc_google_q3" name="ppc_google_q3" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 4. על בסיס מה נגדיר את היעד</h3></div>
+                  
+                  <p class="hint">על בסיס מה תגדיר/י את ה-tCPA? רשום/י את הנוסחה ואת המשתנים העסקיים שצריך לקחת בחשבון.</p>
+                  
+                  <label for="ppc_google_q4">תשובה</label><textarea id="ppc_google_q4" name="ppc_google_q4" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 5. הגדרנו תקציב ו-tCPA - והכסף לא יוצא</h3></div>
+                  
+                  <p class="hint">הגדרנו בקמפיין חיפוש תקציב X ₪, ואחרי תקופה הקמפיין לא מוציא את כל התקציב. הרווחיות מצוינת והלקוח מרוצה - אבל אין מספיק לידים. גם הגדרנו tCPA. מה הסיבה האפשרית, ומה תבדוק/י?</p>
+                  
+                  <label for="ppc_google_q5">תשובה</label><textarea id="ppc_google_q5" name="ppc_google_q5" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 6. יבוא המרות מ-CRM - עסקה אחת ביום</h3></div>
+                  
+                  <p class="hint">אנחנו מייבאים המרות מה-CRM, ויש בערך עסקה אחת ביום - כ-30 בחודש. מה תסמן/י כ-Primary: אירוע ליד או אירוע רכישה/עסקה? נמק/י, כולל שיקול של נפח דאטה ללמידה.</p>
+                  
+                  <label for="ppc_google_q6">תשובה</label><textarea id="ppc_google_q6" name="ppc_google_q6" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 7. אבחון נתונים + פרמטרים נוספים</h3></div>
+                  
+                  <p class="hint">בהינתן הנתונים בטבלה - מה תעשה/י איתם, ואילו פרמטרים נוספים שלא מופיעים בטבלה תבדוק/י כדי לשפר את הפעילות?</p>
+                  <div class="table-wrap"><table class="data-table">
+                    <thead><tr><th>קמפיין</th><th>Cost</th><th>Conv</th><th>CPA</th><th>ROAS</th></tr></thead>
+                    <tbody><tr><td>Brand</td><td>₪600</td><td>20</td><td>₪30</td><td>700%</td></tr><tr><td>Generic</td><td>₪2,400</td><td>22</td><td>₪109</td><td>210%</td></tr><tr><td>מתחרים</td><td>₪1,500</td><td>6</td><td>₪250</td><td>90%</td></tr></tbody>
+                  </table></div>
+                  <label for="ppc_google_q7">תשובה</label><textarea id="ppc_google_q7" name="ppc_google_q7" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block section-intro">
+                  <div class="question-top"><h3>סקשן 2 - פייסבוק / מטא: מבניות קמפיין</h3><span class="points">20 נק׳</span></div>
+                </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק 2 — התנהלות מול לקוחות</h3><span class="points">20 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 8. CBO מול ABO</h3></div>
+                  
+                  <p class="hint">מתי תבנה/י קמפיין ב-Advantage Campaign Budget / CBO ומתי ב-ABO, כלומר תקציב ברמת ה-Ad Set? תן/י שיקול אחד לכל צד בתרחיש הקפסולות.</p>
+                  
+                  <label for="ppc_meta_q1">תשובה</label><textarea id="ppc_meta_q1" name="ppc_meta_q1" data-required-when="ppc"></textarea>
                 </div>
-                <div class="question-block"><div class="question-top"><h3>1. לקוח נסער בגלל CPL</h3><span class="points">4 נק׳</span></div><p class="hint">לקוח מתקשר נסער כי ה-CPL עלה פי 2 השבוע. איך פותחים את השיחה?</p><label for="ppcClient1">תשובה</label><textarea id="ppcClient1" name="ppc_client_q1" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>2. Learning Phase</h3><span class="points">4 נק׳</span></div><p class="hint">איך מסבירים ללקוח לא-טכני מה זה Learning Phase ולמה הביצועים עלולים לרדת בהתחלת שינוי בקמפיין?</p><label for="ppcClient2">תשובה</label><textarea id="ppcClient2" name="ppc_client_q2" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>3. שינוי אסטרטגי דרסטי</h3><span class="points">4 נק׳</span></div><p class="hint">לקוח מבקש “תעצרו הכל ותעברו הכל לטיקטוק”, ואתם לא בטוחים שזה נכון מקצועית. איך מגיבים?</p><label for="ppcClient3">תשובה</label><textarea id="ppcClient3" name="ppc_client_q3" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>4. דוח / עדכון שבועי</h3><span class="points">4 נק׳</span></div><p class="hint">מה חייב להיות בדוח או עדכון שבועי טוב ללקוח, לדעתך?</p><label for="ppcClient4">תשובה</label><textarea id="ppcClient4" name="ppc_client_q4" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>5. תיעדוף בין לקוחות</h3><span class="points">4 נק׳</span></div><p class="hint">יש לך 5 לקוחות שדרשו תשומת לב היום במקביל. איך מתעדפים?</p><label for="ppcClient5">תשובה</label><textarea id="ppcClient5" name="ppc_client_q5" data-required-when="ppc"></textarea></div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 9. כמה Ad Sets וכמה קריאייטיבים</h3></div>
+                  
+                  <p class="hint">לקוח נדל״ן. עלות המרה צפויה כ-₪300 לליד. תקציב ₪1,500 ליום. כמה קבוצות מודעות תפתח/י, וכמה קריאייטיבים בכל קבוצה? נמק/י בחישוב ובהקשר של למידה.</p>
+                  
+                  <label for="ppc_meta_q2">תשובה</label><textarea id="ppc_meta_q2" name="ppc_meta_q2" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 10. היררכיה במטא + הבדל מכר מול לידים</h3></div>
+                  
+                  <p class="hint">א. תאר/י את ההיררכיה לבניית קמפיינים במטא - אילו קמפיינים ואילו קבוצות מודעות בכל קמפיין. ב. האם יש הבדל ברמת ההיררכיה בין קמפיין מכר לקמפיין לידים? מה השוני? התייחס/י גם ל-Advantage+ Shopping/Sales - מתי כדאי ומתי לא.</p>
+                  
+                  <label for="ppc_meta_q3">תשובה</label><textarea id="ppc_meta_q3" name="ppc_meta_q3" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 11. פערי Attribution בין מערכות</h3></div>
+                  
+                  <p class="hint">אותו קמפיין, שלושה מקורות. למה התמונה נראית כך? ועל בסיס מה תעשה/י אופטימיזציה?</p>
+                  <div class="table-wrap"><table class="data-table">
+                    <thead><tr><th>מקור</th><th>פייסבוק</th><th>גוגל</th></tr></thead>
+                    <tbody><tr><td>מערכות הפרסום</td><td>20</td><td>10</td></tr><tr><td>CRM</td><td>10</td><td>10</td></tr><tr><td>GA4 (Advertising)</td><td>4</td><td>5</td></tr></tbody>
+                  </table></div>
+                  <label for="ppc_meta_q4">תשובה</label><textarea id="ppc_meta_q4" name="ppc_meta_q4" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 12. ₪1,000 הוצאה, רכישה רק ביום האחרון</h3></div>
+                  
+                  <p class="hint">עלה קמפיין לדף נחיתה, הוציא ₪1,000, והביא רכישה אחת - רק ביום האחרון. מה תעשה/י עם הקמפיין, ואילו מדדים יעזרו לך להחליט?</p>
+                  
+                  <label for="ppc_meta_q5">תשובה</label><textarea id="ppc_meta_q5" name="ppc_meta_q5" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 13. מהיעד העסקי לתקרת CPA במטא</h3></div>
+                  
+                  <p class="hint">קפסולות: AOV ₪120, רווח גולמי 40%, CVR 3%. איך מתרגמים את היעד לתקרת CPA במטא, ומה תעשה/י אם ה-CPA בפועל גבוה מהתקרה?</p>
+                  
+                  <label for="ppc_meta_q6">תשובה</label><textarea id="ppc_meta_q6" name="ppc_meta_q6" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 14. אבחון Ad Set שהתדרדר</h3></div>
+                  
+                  <p class="hint">Ad Set שהיה מצוין התחיל להתדרדר: CPM עלה, CTR ירד, CPA טיפס. מה תבדוק/י ובאיזה סדר, ואילו פרמטרים?</p>
+                  
+                  <label for="ppc_meta_q7">תשובה</label><textarea id="ppc_meta_q7" name="ppc_meta_q7" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block section-intro">
+                  <div class="question-top"><h3>סקשן 3 - יעדים עסקיים חוצי-מערכות</h3><span class="points">25 נק׳</span></div>
+                  <div class="scenario"><p><strong>תרחיש:</strong> לקוח נדל״ן להשקעות. ערך עסקה ממוצע = ₪20,000 עמלה. הלקוח רוצה שהפרסום לא יעלה יותר מ-25% מערך העסקה. מריצים במקביל פייסבוק וגוגל, ומייבאים סטטוסים מה-CRM.</p></div>
+                </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק 3 — קייסים לניתוח</h3><span class="points">25 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 15. המשפך והמדדים שלו</h3></div>
+                  
+                  <p class="hint">הגדר/י את שלבי המשפך ואת המדד הכספי בכל שלב: ליד ← ליד רלוונטי ← פגישה ← עסקה. מהו ה-KPI האמיתי שמנהלים לפיו, ולמה לא CPL?</p>
+                  
+                  <label for="ppc_business_q1">תשובה</label><textarea id="ppc_business_q1" name="ppc_business_q1" data-required-when="ppc"></textarea>
                 </div>
-                <div class="question-block"><div class="question-top"><h3>1. CPL עלה פי 2</h3><span class="points">5 נק׳</span></div><p class="hint">ה-CPL של קמפיין Lead Gen עלה פי 2 בין שני שבועות, בלי שינוי מכוון בתקציב או בקהלים. מה שלושת הצעדים הראשונים שלך בשעה הקרובה?</p><label for="ppcCase1">תשובה</label><textarea id="ppcCase1" name="ppc_case_q1" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>2. קונברשנים לא נספרו</h3><span class="points">5 נק׳</span></div><p class="hint">גילית שקונברשנים לא נספרו כראוי 3 ימים אחורה, והלקוח עדיין לא שם לב. מה עושים?</p><label for="ppcCase2">תשובה</label><textarea id="ppcCase2" name="ppc_case_q2" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>3. Learning Phase ממושך</h3><span class="points">5 נק׳</span></div><p class="hint">קמפיין נמצא ב-Learning Phase כבר שבועיים ולא יוצא ממנו. אילו סיבות תבדוק/י ואיזה שינויים תשקול/י?</p><label for="ppcCase3">תשובה</label><textarea id="ppcCase3" name="ppc_case_q3" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>4. הגדלת תקציב פי 3</h3><span class="points">5 נק׳</span></div><p class="hint">הלקוח רוצה להכפיל פי 3 את התקציב בבת אחת לקראת סוף החודש “כדי לנצל את התקציב”. איך מגיבים?</p><label for="ppcCase4">תשובה</label><textarea id="ppcCase4" name="ppc_case_q4" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>5. Frequency עולה, CTR יורד, CPM עולה</h3><span class="points">5 נק׳</span></div><p class="hint">מה הצעדים שלך בקמפיין מטא במצב כזה?</p><label for="ppcCase5">תשובה</label><textarea id="ppcCase5" name="ppc_case_q5" data-required-when="ppc"></textarea></div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 16. איזו פלטפורמה באמת מניבה?</h3></div>
+                  
+                  <p class="hint">חשב/י CPRL ועלות-לעסקה לכל פלטפורמה. איזו באמת מניבה יותר, ומה תעשה/י עם התקציב?</p>
+                  <div class="table-wrap"><table class="data-table">
+                    <thead><tr><th>פלטפורמה</th><th>הוצאה</th><th>לידים</th><th>CPL</th><th>רלוונטיים</th><th>עסקאות</th></tr></thead>
+                    <tbody><tr><td>פייסבוק</td><td>₪10,000</td><td>100</td><td>₪100</td><td>40</td><td>2</td></tr><tr><td>גוגל</td><td>₪8,000</td><td>40</td><td>₪200</td><td>30</td><td>4</td></tr></tbody>
+                  </table></div>
+                  <label for="ppc_business_q2">תשובה</label><textarea id="ppc_business_q2" name="ppc_business_q2" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 17. מהיעד העסקי להגדרת המערכת</h3></div>
+                  
+                  <p class="hint">ערך עסקה ₪20,000, תקרת פרסום 25%, יחס סגירה ליד רלוונטי ← עסקה = 5%. על בסיס מה תגדיר/י את ה-tCPA, ומהו הערך? רשום/י את הדרך.</p>
+                  
+                  <label for="ppc_business_q3">תשובה</label><textarea id="ppc_business_q3" name="ppc_business_q3" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 18. ליד רלוונטי והזנת הסיגנל חזרה</h3></div>
+                  
+                  <p class="hint">מה הופך ליד לרלוונטי, למה CPRL חשוב יותר מ-CPL לניהול הבידינג, ואיך גורמים למערכות לבצע אופטימיזציה לרלוונטיות ולא רק לכמות?</p>
+                  
+                  <label for="ppc_business_q4">תשובה</label><textarea id="ppc_business_q4" name="ppc_business_q4" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 19. הקצאת תקציב ו-Pacing תוך-חודשי</h3></div>
+                  
+                  <p class="hint">תקציב חודשי ₪60,000. אנחנו ב-15 בחודש ונוצל ₪22,000. הרווחיות טובה. א. האם אנחנו בקצב תקין? ב. מה תעשה/י, ואיך תחליט/י לאן להזרים את היתרה?</p>
+                  
+                  <label for="ppc_business_q5">תשובה</label><textarea id="ppc_business_q5" name="ppc_business_q5" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 20. הלקוח מתלונן על CPL, אבל...</h3></div>
+                  
+                  <p class="hint">הלקוח אומר: "ה-CPL עלה החודש, אני לא מרוצה." בבדיקה: CPL עלה מ-₪100 ל-₪140, אבל אחוז הרלוונטיות עלה מ-40% ל-70%, ומספר העסקאות הכפיל את עצמו. איך תגיב/י, ולפי מה תמשיך/י לנהל?</p>
+                  
+                  <label for="ppc_business_q6">תשובה</label><textarea id="ppc_business_q6" name="ppc_business_q6" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block section-intro">
+                  <div class="question-top"><h3>סקשן 4 - התנהלות מול לקוח וניהול שוטף</h3><span class="points">20 נק׳</span></div>
+                  <div class="scenario"><p>שאלות תרחיש ושיפוט מקצועי. אין תשובה אחת נכונה - מחפשים חשיבה מקצועית, שיקול דעת ותקשורת נכונה מול לקוח.</p></div>
+                </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק 4 — שימוש בכלי AI</h3><span class="points">10 נק׳</span></div>
+                  <div class="question-top"><h3>שאלה 21. תהליך אופטימיזציה שוטף</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">איך נראה תהליך אופטימיזציה יומי / שבועי שלך לתיק לקוחות - מה בודקים קודם ובאיזו תדירות?</p>
+                  
+                  <label for="ppc_client_q1">תשובה</label><textarea id="ppc_client_q1" name="ppc_client_q1" data-required-when="ppc"></textarea>
                 </div>
-                <div class="question-block"><div class="question-top"><h3>1. כלי AI בעבודה</h3><span class="points">3 נק׳</span></div><p class="hint">באילו כלי AI את/ה משתמש/ת היום בעבודה השוטפת?</p><label for="ppcAi1">תשובה</label><textarea id="ppcAi1" name="ppc_ai_q1" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>2. דוגמה קונקרטית לחיסכון בזמן / שיפור איכות</h3><span class="points">4 נק׳</span></div><p class="hint">תן/י דוגמה למשימה שבה AI חסך זמן משמעותי או שיפר איכות עבודה.</p><label for="ppcAi2">תשובה</label><textarea id="ppcAi2" name="ppc_ai_q2" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>3. איפה AI לא מספיק אמין?</h3><span class="points">3 נק׳</span></div><p class="hint">איפה לא היית סומך/ת עליו לבד בעבודת פרסום, ואיך מוודאים שהוא לא טועה?</p><label for="ppcAi3">תשובה</label><textarea id="ppcAi3" name="ppc_ai_q3" data-required-when="ppc"></textarea></div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 22. תיעדוף בין לקוחות</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">יש לך 5 לקוחות שדרשו תשומת לב היום במקביל. איך מתעדפים?</p>
+                  
+                  <label for="ppc_client_q2">תשובה</label><textarea id="ppc_client_q2" name="ppc_client_q2" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 23. לקוח נסער בגלל CPL</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">לקוח מתקשר נסער כי ה-CPL עלה פי 2 השבוע. איך פותחים את השיחה?</p>
+                  
+                  <label for="ppc_client_q3">תשובה</label><textarea id="ppc_client_q3" name="ppc_client_q3" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 24. שינוי אסטרטגי דרסטי</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">לקוח מבקש "תעצרו הכל ותעברו הכל לטיקטוק", ואתם לא בטוחים שזה נכון מקצועית. איך מגיבים?</p>
+                  
+                  <label for="ppc_client_q4">תשובה</label><textarea id="ppc_client_q4" name="ppc_client_q4" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 25. Learning Phase - הסבר ללקוח לא-טכני</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">איך מסבירים ללקוח לא-טכני מה זה Learning Phase ולמה הביצועים עלולים לרדת בהתחלת שינוי בקמפיין?</p>
+                  
+                  <label for="ppc_client_q5">תשובה</label><textarea id="ppc_client_q5" name="ppc_client_q5" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 26. דוח / עדכון שבועי</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">מה חייב להיות בדוח או עדכון שבועי טוב ללקוח, לדעתך?</p>
+                  
+                  <label for="ppc_client_q6">תשובה</label><textarea id="ppc_client_q6" name="ppc_client_q6" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 27. קונברשנים לא נספרו</h3><span class="points">3 נק׳</span></div>
+                  
+                  <p class="hint">גילית שקונברשנים לא נספרו כראוי 3 ימים אחורה, והלקוח עדיין לא שם לב. מה עושים?</p>
+                  
+                  <label for="ppc_client_q7">תשובה</label><textarea id="ppc_client_q7" name="ppc_client_q7" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 28. Learning Phase ממושך</h3><span class="points">3 נק׳</span></div>
+                  
+                  <p class="hint">קמפיין נמצא ב-Learning Phase כבר שבועיים ולא יוצא ממנו. אילו סיבות תבדוק/י ואיזה שינויים תשקול/י?</p>
+                  
+                  <label for="ppc_client_q8">תשובה</label><textarea id="ppc_client_q8" name="ppc_client_q8" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 29. הגדלת תקציב פי 3</h3><span class="points">2 נק׳</span></div>
+                  
+                  <p class="hint">הלקוח רוצה להכפיל פי 3 את התקציב בבת אחת לקראת סוף החודש "כדי לנצל את התקציב". איך מגיבים?</p>
+                  
+                  <label for="ppc_client_q9">תשובה</label><textarea id="ppc_client_q9" name="ppc_client_q9" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block section-intro">
+                  <div class="question-top"><h3>סקשן 5 - שימוש בכלי AI בעבודת פרפורמנס</h3><span class="points">10 נק׳</span></div>
+                </div>
 
                 <div class="question-block">
-                  <div class="question-top"><h3>חלק 5 — שאלות ניהוליות: רזרבה ל-Team Lead</h3><span class="points">5 נק׳</span></div>
-                  <p class="hint">החלק הזה בודק פוטנציאל הובלה וניהול צוות, גם אם המשרה אינה מוגדרת כרגע Team Lead.</p>
+                  <div class="question-top"><h3>שאלה 30. כלי AI בעבודה</h3><span class="points">3 נק׳</span></div>
+                  
+                  <p class="hint">באילו כלי AI את/ה משתמש/ת היום בעבודה השוטפת - ChatGPT, Claude, Gemini, כלים ייעודיים לפרסום או אחר?</p>
+                  
+                  <label for="ppc_ai_q1">תשובה</label><textarea id="ppc_ai_q1" name="ppc_ai_q1" data-required-when="ppc"></textarea>
                 </div>
-                <div class="question-block"><div class="question-top"><h3>1. קמפיינר/ית טוב/ה מול Team Lead טוב/ה</h3><span class="points">1 נק׳</span></div><p class="hint">מה, לדעתך, ההבדל בין קמפיינר/ית טובה לבין Team Lead טוב/ה? מה משתנה בתפקיד?</p><label for="ppcLead1">תשובה</label><textarea id="ppcLead1" name="ppc_lead_q1" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>2. מתן משוב לחבר צוות</h3><span class="points">1 נק׳</span></div><p class="hint">ספר/י על מצב שבו נתת משוב לחבר צוות על עבודה שלא הייתה ברמה הנדרשת. איך זה עבר?</p><label for="ppcLead2">תשובה</label><textarea id="ppcLead2" name="ppc_lead_q2" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>3. בקרת איכות בצוות</h3><span class="points">1 נק׳</span></div><p class="hint">איך היית בונה תהליך שמוודא שכל קמפיין שיוצא מהצוות עבר בקרה, בלי להיות זה שבודק כל דבר בעצמו?</p><label for="ppcLead3">תשובה</label><textarea id="ppcLead3" name="ppc_lead_q3" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>4. קליטת ג׳וניור ב-3 חודשים</h3><span class="points">1 נק׳</span></div><p class="hint">מה הופך קמפיינר/ית ג׳וניור למוצלח/ת ב-3 החודשים הראשונים, ומה התפקיד שלך בזה כמוביל/ה?</p><label for="ppcLead4">תשובה</label><textarea id="ppcLead4" name="ppc_lead_q4" data-required-when="ppc"></textarea></div>
-                <div class="question-block"><div class="question-top"><h3>5. חלוקת עומסים</h3><span class="points">1 נק׳</span></div><p class="hint">איך את/ה חושב/ת על חלוקת עומס בין אנשי צוות כשיש עומס לא שווה בין לקוחות?</p><label for="ppcLead5">תשובה</label><textarea id="ppcLead5" name="ppc_lead_q5" data-required-when="ppc"></textarea></div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 31. דוגמה קונקרטית לחיסכון בזמן / שיפור איכות</h3><span class="points">4 נק׳</span></div>
+                  
+                  <p class="hint">תן/י דוגמה קונקרטית למשימה שבה AI חסך זמן משמעותי או שיפר איכות עבודה: כתיבת קופי, ניתוח נתונים, מחקר מתחרים, בניית דוחות וכו׳.</p>
+                  
+                  <label for="ppc_ai_q2">תשובה</label><textarea id="ppc_ai_q2" name="ppc_ai_q2" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 32. איפה AI לא מספיק אמין?</h3><span class="points">3 נק׳</span></div>
+                  
+                  <p class="hint">איפה, לדעתך, AI לא אמין מספיק כדי לסמוך עליו לבד בעבודת פרסום - דאטה, אטריביושן, החלטות תקציב וכו׳ - ואיך מוודאים שהוא לא טועה?</p>
+                  
+                  <label for="ppc_ai_q3">תשובה</label><textarea id="ppc_ai_q3" name="ppc_ai_q3" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block section-intro">
+                  <div class="question-top"><h3>סקשן 6 - מנהיגות ו-Team Lead</h3><span class="points">5 נק׳ רזרבה</span></div>
+                </div>
+
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 33. קמפיינר/ית טוב/ה מול Team Lead טוב/ה</h3><span class="points">1 נק׳</span></div>
+                  
+                  <p class="hint">מה, לדעתך, ההבדל בין קמפיינר/ית טובה לבין Team Lead טוב/ה? מה משתנה בתפקיד?</p>
+                  
+                  <label for="ppc_lead_q1">תשובה</label><textarea id="ppc_lead_q1" name="ppc_lead_q1" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 34. מתן משוב לחבר צוות</h3><span class="points">1 נק׳</span></div>
+                  
+                  <p class="hint">ספר/י על מצב שבו נתת משוב לחבר צוות על עבודה שלא הייתה ברמה הנדרשת. איך זה עבר?</p>
+                  
+                  <label for="ppc_lead_q2">תשובה</label><textarea id="ppc_lead_q2" name="ppc_lead_q2" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 35. בקרת איכות בצוות</h3><span class="points">1 נק׳</span></div>
+                  
+                  <p class="hint">איך היית בונה תהליך שמוודא שכל קמפיין שיוצא מהצוות עבר בקרה, בלי להיות זה שבודק כל דבר בעצמך?</p>
+                  
+                  <label for="ppc_lead_q3">תשובה</label><textarea id="ppc_lead_q3" name="ppc_lead_q3" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 36. קליטת ג׳וניור ב-3 חודשים</h3><span class="points">1 נק׳</span></div>
+                  
+                  <p class="hint">מה הופך קמפיינר/ית ג׳וניור למוצלח/ת ב-3 החודשים הראשונים, ומה התפקיד שלך בזה כמוביל/ה?</p>
+                  
+                  <label for="ppc_lead_q4">תשובה</label><textarea id="ppc_lead_q4" name="ppc_lead_q4" data-required-when="ppc"></textarea>
+                </div>
+                <div class="question-block">
+                  <div class="question-top"><h3>שאלה 37. חלוקת עומסים</h3><span class="points">1 נק׳</span></div>
+                  
+                  <p class="hint">איך את/ה חושב/ת על חלוקת עומס בין אנשי צוות כשיש עומס לא שווה בין לקוחות?</p>
+                  
+                  <label for="ppc_lead_q5">תשובה</label><textarea id="ppc_lead_q5" name="ppc_lead_q5" data-required-when="ppc"></textarea>
+                </div>
               </section>
-
 
               <div class="question-block">
                 <div class="question-top"><h3>פרטים אישיים</h3><span class="points">חובה</span></div>
@@ -1015,26 +1267,35 @@
           creative_operations_task_2: data.operations_task_2 || '',
           creative_ai_task_1: data.ai_task_1 || '',
           creative_ai_task_2: data.ai_task_2 || '',
-          ppc_professional_q1: data.ppc_professional_q1 || '',
-          ppc_professional_q2: data.ppc_professional_q2 || '',
-          ppc_professional_q3: data.ppc_professional_q3 || '',
-          ppc_professional_q4: data.ppc_professional_q4 || '',
-          ppc_professional_q5: data.ppc_professional_q5 || '',
-          ppc_professional_q6: data.ppc_professional_q6 || '',
-          ppc_professional_q7: data.ppc_professional_q7 || '',
-          ppc_professional_q8: data.ppc_professional_q8 || '',
-          ppc_professional_q9: data.ppc_professional_q9 || '',
-          ppc_professional_q10: data.ppc_professional_q10 || '',
+          ppc_google_q1: data.ppc_google_q1 || '',
+          ppc_google_q2: data.ppc_google_q2 || '',
+          ppc_google_q3: data.ppc_google_q3 || '',
+          ppc_google_q4: data.ppc_google_q4 || '',
+          ppc_google_q5: data.ppc_google_q5 || '',
+          ppc_google_q6: data.ppc_google_q6 || '',
+          ppc_google_q7: data.ppc_google_q7 || '',
+          ppc_meta_q1: data.ppc_meta_q1 || '',
+          ppc_meta_q2: data.ppc_meta_q2 || '',
+          ppc_meta_q3: data.ppc_meta_q3 || '',
+          ppc_meta_q4: data.ppc_meta_q4 || '',
+          ppc_meta_q5: data.ppc_meta_q5 || '',
+          ppc_meta_q6: data.ppc_meta_q6 || '',
+          ppc_meta_q7: data.ppc_meta_q7 || '',
+          ppc_business_q1: data.ppc_business_q1 || '',
+          ppc_business_q2: data.ppc_business_q2 || '',
+          ppc_business_q3: data.ppc_business_q3 || '',
+          ppc_business_q4: data.ppc_business_q4 || '',
+          ppc_business_q5: data.ppc_business_q5 || '',
+          ppc_business_q6: data.ppc_business_q6 || '',
           ppc_client_q1: data.ppc_client_q1 || '',
           ppc_client_q2: data.ppc_client_q2 || '',
           ppc_client_q3: data.ppc_client_q3 || '',
           ppc_client_q4: data.ppc_client_q4 || '',
           ppc_client_q5: data.ppc_client_q5 || '',
-          ppc_case_q1: data.ppc_case_q1 || '',
-          ppc_case_q2: data.ppc_case_q2 || '',
-          ppc_case_q3: data.ppc_case_q3 || '',
-          ppc_case_q4: data.ppc_case_q4 || '',
-          ppc_case_q5: data.ppc_case_q5 || '',
+          ppc_client_q6: data.ppc_client_q6 || '',
+          ppc_client_q7: data.ppc_client_q7 || '',
+          ppc_client_q8: data.ppc_client_q8 || '',
+          ppc_client_q9: data.ppc_client_q9 || '',
           ppc_ai_q1: data.ppc_ai_q1 || '',
           ppc_ai_q2: data.ppc_ai_q2 || '',
           ppc_ai_q3: data.ppc_ai_q3 || '',
@@ -1049,6 +1310,12 @@
           creative: '',
           operations: '',
           ai: '',
+          ppc_google_search: '',
+          ppc_meta: '',
+          ppc_business_goals: '',
+          ppc_client_management: '',
+          ppc_ai: '',
+          ppc_team_lead: '',
           total: ''
         },
         tracking,
