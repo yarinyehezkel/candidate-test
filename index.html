@@ -1205,18 +1205,23 @@
     const statusEl = document.getElementById('formStatus');
     const submitBtn = document.getElementById('submitBtn');
 
-    document.querySelectorAll('input[name="role"]').forEach(input => {
-      input.addEventListener('change', () => {
-        const selectedRole = document.querySelector('input[name="role"]:checked')?.value || '';
-        const isCreative = selectedRole === CREATIVE_ROLE;
-        const isPpc = selectedRole === PPC_ROLE;
-        creativeQuestionnaire.classList.toggle('hidden', !isCreative);
-        ppcQuestionnaire.classList.toggle('hidden', !isPpc);
-        document.querySelectorAll('[data-required-when]').forEach(field => {
-          field.required = field.dataset.requiredWhen === (isCreative ? 'creative' : isPpc ? 'ppc' : '');
-        });
+    function syncQuestionnaireForRole() {
+      const selectedRole = document.querySelector('input[name="role"]:checked')?.value || '';
+      const isCreative = selectedRole === CREATIVE_ROLE;
+      const isPpc = selectedRole === PPC_ROLE;
+      creativeQuestionnaire.classList.toggle('hidden', !isCreative);
+      ppcQuestionnaire.classList.toggle('hidden', !isPpc);
+      document.querySelectorAll('[data-required-when]').forEach(field => {
+        field.required = field.dataset.requiredWhen === (isCreative ? 'creative' : isPpc ? 'ppc' : '');
       });
+      return isCreative || isPpc;
+    }
+
+    document.querySelectorAll('input[name="role"]').forEach(input => {
+      input.addEventListener('change', syncQuestionnaireForRole);
     });
+
+    window.addEventListener('pageshow', syncQuestionnaireForRole);
 
     document.querySelectorAll('[data-scroll-to]').forEach(btn => {
       btn.addEventListener('click', () => document.getElementById(btn.dataset.scrollTo).scrollIntoView({behavior:'smooth'}));
@@ -1239,6 +1244,7 @@
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       statusEl.textContent = '';
+      syncQuestionnaireForRole();
       if (!form.checkValidity()) {
         form.reportValidity();
         statusEl.textContent = 'יש להשלים את כל שדות החובה לפני השליחה.';
