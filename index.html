@@ -482,6 +482,47 @@
     .submit-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
     .status { color: var(--muted); font-weight: 700; }
     .status.success { color: var(--success); }
+    .form-alert {
+      display: none;
+      align-items: flex-start;
+      gap: 10px;
+      background: #fff1f2;
+      border: 2px solid #e8344e;
+      color: #9f1239;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    .form-alert.visible { display: flex; }
+    .form-alert ul { margin: 6px 0 0; padding-right: 20px; font-weight: 600; }
+    .autosave-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .autosave-banner.visible { display: flex; }
+    .autosave-banner button {
+      border: 1px solid #166534;
+      background: transparent;
+      color: #166534;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font: inherit;
+    }
+    .autosave-indicator { color: var(--muted); font-weight: 600; font-size: .85rem; }
     .footer {
       padding: 34px 0 46px;
       color: var(--muted);
@@ -667,6 +708,11 @@
           </div>
           <div class="form-wrap">
             <form id="candidateForm" novalidate>
+              <div class="autosave-banner" id="autosaveBanner" role="status">
+                <span id="autosaveBannerText">שוחזרו תשובות שמורות מהפעם הקודמת. אפשר להמשיך מאיפה שהפסקתם.</span>
+                <button type="button" id="autosaveClearBtn">התחלה מחדש</button>
+              </div>
+              <div class="form-alert" id="formAlert" role="alert" aria-live="assertive"></div>
               <div class="field role-picker-field">
                 <span class="legend">בחירת משרה *</span>
                 <div class="role-grid" role="radiogroup" aria-label="בחירת משרה">
@@ -1143,7 +1189,10 @@
               </div>
 
               <div class="form-footer">
-                <span class="status" id="formStatus">השאלון יישלח ישירות למערכת Young Media.</span>
+                <div>
+                  <span class="status" id="formStatus">השאלון יישלח ישירות למערכת Young Media.</span>
+                  <div class="autosave-indicator" id="autosaveIndicator"></div>
+                </div>
                 <button class="submit-btn" id="submitBtn" type="submit">שליחת מועמדות</button>
               </div>
             </form>
@@ -1204,6 +1253,12 @@
     const ppcQuestionnaire = document.getElementById('ppcQuestionnaire');
     const statusEl = document.getElementById('formStatus');
     const submitBtn = document.getElementById('submitBtn');
+    const formAlert = document.getElementById('formAlert');
+    const autosaveBanner = document.getElementById('autosaveBanner');
+    const autosaveBannerText = document.getElementById('autosaveBannerText');
+    const autosaveClearBtn = document.getElementById('autosaveClearBtn');
+    const autosaveIndicator = document.getElementById('autosaveIndicator');
+    const AUTOSAVE_KEY = 'ymCandidateFormAutosave_v1';
 
     function syncQuestionnaireForRole() {
       const selectedRole = document.querySelector('input[name="role"]:checked')?.value || '';
@@ -1241,12 +1296,152 @@
       return 'thankyou.html?' + params.toString();
     }
 
+    // Explicit, re-derived-at-submit-time validation. Deliberately does NOT rely only on
+    // native HTML5 required/checkValidity(): mobile Safari has repeatedly let required
+    // radio groups and required fields inside toggled sections through unblocked, which is
+    // exactly how a candidate with only personal details submitted a 0-answer questionnaire.
+    function getFirstMissingField() {
+      const roleInput = document.querySelector('input[name="role"]:checked');
+      if (!roleInput) {
+        return { el: document.querySelector('input[name="role"]'), message: 'יש לבחור משרה לפני שליחת הטופס.' };
+      }
+
+      const isCreative = roleInput.value === CREATIVE_ROLE;
+      const isPpc = roleInput.value === PPC_ROLE;
+      const roleKey = isCreative ? 'creative' : isPpc ? 'ppc' : '';
+
+      if (roleKey) {
+        const questionnaireFields = Array.from(document.querySelectorAll('[data-required-when="' + roleKey + '"]'));
+        const firstUnanswered = questionnaireFields.find(field => !String(field.value || '').trim());
+        if (firstUnanswered) {
+          return { el: firstUnanswered, message: 'יש למלא את כל שאלות השאלון המסומנות כחובה עבור המשרה שנבחרה לפני שליחת הטופס.' };
+        }
+      }
+
+      const personalFields = [
+        { id: 'fullName', label: 'שם מלא' },
+        { id: 'phone', label: 'טלפון' },
+        { id: 'email', label: 'אימייל' }
+      ];
+      for (const field of personalFields) {
+        const el = document.getElementById(field.id);
+        if (!el || !String(el.value || '').trim()) {
+          return { el, message: 'יש למלא את השדה "' + field.label + '" לפני שליחת הטופס.' };
+        }
+      }
+      const emailEl = document.getElementById('email');
+      if (emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+        return { el: emailEl, message: 'כתובת האימייל שהוזנה אינה תקינה.' };
+      }
+
+      const consentEl = document.querySelector('input[name="consent"]');
+      if (!consentEl || !consentEl.checked) {
+        return { el: consentEl, message: 'יש לאשר את תנאי מסירת הפרטים לפני שליחת הטופס.' };
+      }
+
+      return null;
+    }
+
+    function showFormAlert(message) {
+      formAlert.textContent = message;
+      formAlert.classList.add('visible');
+    }
+
+    function hideFormAlert() {
+      formAlert.classList.remove('visible');
+      formAlert.textContent = '';
+    }
+
+    // --- Autosave: candidates can leave and resume the questionnaire later ---
+    function collectAutosaveState() {
+      const state = {};
+      form.querySelectorAll('input[name], textarea[name], select[name]').forEach(field => {
+        if (field.type === 'radio' || field.type === 'checkbox') {
+          if (field.checked) state[field.name] = field.value;
+        } else {
+          state[field.name] = field.value;
+        }
+      });
+      return state;
+    }
+
+    function saveAutosaveState() {
+      try {
+        const state = collectAutosaveState();
+        const hasContent = Object.values(state).some(v => String(v || '').trim());
+        if (!hasContent) { localStorage.removeItem(AUTOSAVE_KEY); autosaveIndicator.textContent = ''; return; }
+        localStorage.setItem(AUTOSAVE_KEY, JSON.stringify({ state, savedAt: Date.now() }));
+        const time = new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+        autosaveIndicator.textContent = 'נשמר אוטומטית בשעה ' + time;
+      } catch (error) {
+        console.warn('Autosave failed', error);
+      }
+    }
+
+    function clearAutosaveState() {
+      try { localStorage.removeItem(AUTOSAVE_KEY); } catch (error) { /* ignore */ }
+      autosaveBanner.classList.remove('visible');
+      autosaveIndicator.textContent = '';
+    }
+
+    function restoreAutosaveState() {
+      let saved;
+      try { saved = JSON.parse(localStorage.getItem(AUTOSAVE_KEY) || 'null'); } catch (error) { saved = null; }
+      if (!saved || !saved.state) return;
+      const state = saved.state;
+      Object.keys(state).forEach(name => {
+        const value = state[name];
+        const radioMatch = form.querySelector('input[name="' + name + '"][type="radio"][value="' + CSS.escape(value) + '"]');
+        if (radioMatch) { radioMatch.checked = true; return; }
+        const checkboxMatch = form.querySelector('input[name="' + name + '"][type="checkbox"]');
+        if (checkboxMatch) { checkboxMatch.checked = Boolean(value); return; }
+        const field = form.querySelector('[name="' + name + '"]');
+        if (field) field.value = value;
+      });
+      syncQuestionnaireForRole();
+      if (saved.savedAt) {
+        const savedDate = new Date(saved.savedAt);
+        autosaveBannerText.textContent = 'שוחזרו תשובות שמורות מ-' + savedDate.toLocaleString('he-IL', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }) + '. אפשר להמשיך מאיפה שהפסקתם.';
+      }
+      autosaveBanner.classList.add('visible');
+    }
+
+    let autosaveTimer = null;
+    function scheduleAutosave() {
+      if (autosaveTimer) clearTimeout(autosaveTimer);
+      autosaveTimer = setTimeout(saveAutosaveState, 500);
+    }
+    form.addEventListener('input', scheduleAutosave);
+    form.addEventListener('change', scheduleAutosave);
+    autosaveClearBtn.addEventListener('click', () => {
+      form.reset();
+      syncQuestionnaireForRole();
+      clearAutosaveState();
+      hideFormAlert();
+    });
+
+    restoreAutosaveState();
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       statusEl.textContent = '';
+      hideFormAlert();
       syncQuestionnaireForRole();
+
+      const missing = getFirstMissingField();
+      if (missing) {
+        showFormAlert(missing.message);
+        statusEl.textContent = 'יש להשלים את כל שדות החובה לפני השליחה.';
+        if (missing.el) {
+          missing.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          missing.el.focus({ preventScroll: true });
+        }
+        return;
+      }
+      // Defense in depth: also run native constraint validation.
       if (!form.checkValidity()) {
         form.reportValidity();
+        showFormAlert('יש להשלים את כל שדות החובה לפני השליחה.');
         statusEl.textContent = 'יש להשלים את כל שדות החובה לפני השליחה.';
         return;
       }
@@ -1340,9 +1535,11 @@
         });
         statusEl.textContent = 'השאלון נשלח בהצלחה.';
         statusEl.classList.add('success');
+        clearAutosaveState();
       } catch (error) {
         console.warn('Webhook failed, redirecting anyway', error);
         statusEl.textContent = 'השאלון נקלט, מעביר לעמוד תודה.';
+        clearAutosaveState();
       } finally {
         const tyUrl = buildThankYouUrl(tracking);
         setTimeout(() => { window.location.href = tyUrl; }, 450);
