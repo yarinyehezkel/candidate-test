@@ -1352,6 +1352,56 @@
       formAlert.textContent = '';
     }
 
+    // keepalive requests are capped around 64KB by the Fetch spec; a full
+    // PPC submission can exceed that, so the main payload must NOT use it.
+    async function sendWithRetry(payload, maxAttempts) {
+      maxAttempts = maxAttempts || 3;
+      let lastError = null;
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) {
+            throw new Error('HTTP ' + response.status);
+          }
+          return { success: true };
+        } catch (error) {
+          lastError = error;
+          if (attempt < maxAttempts) {
+            await new Promise(resolve => setTimeout(resolve, attempt * 800));
+          }
+        }
+      }
+      return { success: false, error: lastError };
+    }
+
+    // Tiny, separate beacon so we hear about a failed submission even when
+    // the main payload itself is what failed to send (e.g. size-related).
+    function sendFailureAlert(payload, error) {
+      try {
+        const bodyStr = JSON.stringify(payload);
+        const alertPayload = {
+          source: 'youngmedia_hr_questionnaire_failure_alert',
+          full_name: payload.full_name || '',
+          phone: payload.phone || '',
+          email: payload.email || '',
+          role: payload.role || '',
+          error_message: String((error && error.message) || error || 'unknown'),
+          payload_size_bytes: bodyStr.length,
+          submitted_at: new Date().toISOString()
+        };
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(alertPayload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) { /* best effort, never block the candidate on this */ }
+    }
+
     // --- Autosave: candidates can leave and resume the questionnaire later ---
     function collectAutosaveState() {
       const state = {};
@@ -1525,24 +1575,24 @@
 
       submitBtn.disabled = true;
       statusEl.textContent = 'שולח את השאלון...';
+      statusEl.classList.remove('success');
+      hideFormAlert();
 
-      try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true
-        });
+      const result = await sendWithRetry(payload);
+
+      if (result.success) {
         statusEl.textContent = 'השאלון נשלח בהצלחה.';
         statusEl.classList.add('success');
         clearAutosaveState();
-      } catch (error) {
-        console.warn('Webhook failed, redirecting anyway', error);
-        statusEl.textContent = 'השאלון נקלט, מעביר לעמוד תודה.';
-        clearAutosaveState();
-      } finally {
         const tyUrl = buildThankYouUrl(tracking);
         setTimeout(() => { window.location.href = tyUrl; }, 450);
+      } else {
+        console.warn('Webhook failed after retries', result.error);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'שלחי שוב';
+        statusEl.textContent = '';
+        showFormAlert('לא הצלחנו לשלוח את השאלון. התשובות שלך שמורות בדפדפן — לחצי על "שלחי שוב" ונסי שוב.');
+        sendFailureAlert(payload, result.error);
       }
     });
 
