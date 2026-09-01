@@ -1384,8 +1384,31 @@
     // so this alert was landing on the normal candidate path and creating a
     // false 0/100 candidate + Monday cards. Re-enable only once n8n routes
     // this source separately (pending on Yair's side).
+    // Re-enabled: n8n now routes source containing "failure_alert" to a
+    // separate branch (verified against live workflow, run 487056/487071).
+    // submission_id is intentionally omitted until the Supabase backup write
+    // exists — its absence correctly tells the n8n task the backup may also
+    // have failed, which is still true today.
     function sendFailureAlert(payload, error) {
-      console.warn('Submission failed after retries (alert beacon disabled pending n8n routing fix)', error);
+      try {
+        const bodyStr = JSON.stringify(payload);
+        const alertPayload = {
+          source: 'youngmedia_hr_questionnaire_failure_alert',
+          full_name: payload.full_name || '',
+          phone: payload.phone || '',
+          email: payload.email || '',
+          role: payload.role || '',
+          error: String((error && error.message) || error || 'unknown'),
+          payload_size: bodyStr.length,
+          submitted_at: new Date().toISOString()
+        };
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(alertPayload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) { /* best effort, never block the candidate on this */ }
     }
 
     // --- Autosave: candidates can leave and resume the questionnaire later ---
