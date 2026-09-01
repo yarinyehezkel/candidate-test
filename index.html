@@ -1232,6 +1232,11 @@
     const WEBHOOK_URL = 'https://n8n.youngmedia.co.il/webhook/10a42c29-79d4-439d-b90b-c03081283211';
     const CREATIVE_ROLE = 'מנהל/ת קריאייטיב ולקוחות';
     const PPC_ROLE = 'מנהל/ת קמפיינים ממומנים';
+    // Direct backup write, independent of n8n (public.form_submissions, anon-insert-only RLS).
+    const SUPABASE_URL = 'https://bdpglukfupgctsdkaang.supabase.co/rest/v1/form_submissions';
+    const SUPABASE_ANON_KEY = 'sb_publishable_QcZI_LxJZqOmrBf80be00g_gAUJwj2c';
+    const BACKUP_CLIENT = 'young-media';
+    const BACKUP_FORM = 'hr_candidate_test';
 
     function captureTrackingParams() {
       const params = new URLSearchParams(window.location.search);
@@ -1354,16 +1359,14 @@
 
     // keepalive requests are capped around 64KB by the Fetch spec; a full
     // PPC submission can exceed that, so the main payload must NOT use it.
-    async function sendWithRetry(payload, maxAttempts) {
+    // requestFn issues one attempt and returns a fetch Response; reused for
+    // both the Supabase backup write and the n8n webhook.
+    async function sendWithRetry(requestFn, maxAttempts) {
       maxAttempts = maxAttempts || 3;
       let lastError = null;
       for (let attempt = 1; attempt <= maxAttempts; attempt++) {
         try {
-          const response = await fetch(WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
+          const response = await requestFn();
           if (!response.ok) {
             throw new Error('HTTP ' + response.status);
           }
@@ -1378,6 +1381,27 @@
       return { success: false, error: lastError };
     }
 
+    function postSupabaseBackup(row) {
+      return fetch(SUPABASE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify(row)
+      });
+    }
+
+    function postWebhook(payload) {
+      return fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    }
+
     // Tiny, separate beacon so we hear about a failed submission even when
     // the main payload itself is what failed to send (e.g. size-related).
     // Disabled: the n8n workflow (F5x5Gcauh3Xmr76s) does not branch on `source`,
@@ -1389,7 +1413,10 @@
     // submission_id is intentionally omitted until the Supabase backup write
     // exists — its absence correctly tells the n8n task the backup may also
     // have failed, which is still true today.
-    function sendFailureAlert(payload, error) {
+    // submissionId is included only when the Supabase backup write actually
+    // succeeded — its presence tells the n8n task the answers are safe;
+    // its absence is an honest signal that the backup may have failed too.
+    function sendFailureAlert(payload, error, submissionId) {
       try {
         const bodyStr = JSON.stringify(payload);
         const alertPayload = {
@@ -1402,6 +1429,7 @@
           payload_size: bodyStr.length,
           submitted_at: new Date().toISOString()
         };
+        if (submissionId) alertPayload.submission_id = submissionId;
         fetch(WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1508,8 +1536,10 @@
       const fd = new FormData(form);
       const data = formDataToObject(fd);
       const tracking = captureTrackingParams();
+      const submissionId = crypto.randomUUID();
       const payload = {
         source: 'youngmedia_hr_questionnaire',
+        submission_id: submissionId,
         role: data.role || '',
         full_name: data.full_name || '',
         phone: data.phone || '',
@@ -1582,26 +1612,53 @@
         submitted_at: new Date().toISOString()
       };
 
+      const backupRow = {
+        id: submissionId,
+        client: BACKUP_CLIENT,
+        form: BACKUP_FORM,
+        site: window.location.hostname,
+        page_url: window.location.href,
+        full_name: payload.full_name,
+        phone: payload.phone,
+        email: payload.email,
+        role: payload.role,
+        payload: payload,
+        tracking: tracking,
+        user_agent: navigator.userAgent
+      };
+
       submitBtn.disabled = true;
       statusEl.textContent = 'שולח את השאלון...';
       statusEl.classList.remove('success');
       hideFormAlert();
 
-      const result = await sendWithRetry(payload);
+      // Backup goes out first: a heavy submission that overloads n8n must
+      // not take the backup down with it.
+      const backupResult = await sendWithRetry(() => postSupabaseBackup(backupRow));
 
-      if (result.success) {
+      // n8n is attempted either way (it also scores the candidate), but only
+      // the backup result gates whether we clear autosave / redirect her.
+      const webhookResult = await sendWithRetry(() => postWebhook(payload));
+
+      if (backupResult.success) {
         statusEl.textContent = 'השאלון נשלח בהצלחה.';
         statusEl.classList.add('success');
         clearAutosaveState();
+        if (!webhookResult.success) {
+          console.warn('Webhook failed after retries (backup succeeded)', webhookResult.error);
+          sendFailureAlert(payload, webhookResult.error, submissionId);
+        }
         const tyUrl = buildThankYouUrl(tracking);
         setTimeout(() => { window.location.href = tyUrl; }, 450);
       } else {
-        console.warn('Webhook failed after retries', result.error);
+        console.warn('Backup failed after retries', backupResult.error);
         submitBtn.disabled = false;
         submitBtn.textContent = 'שלחי שוב';
         statusEl.textContent = '';
         showFormAlert('לא הצלחנו לשלוח את השאלון. התשובות שלך שמורות בדפדפן — לחצי על "שלחי שוב" ונסי שוב.');
-        sendFailureAlert(payload, result.error);
+        if (!webhookResult.success) {
+          sendFailureAlert(payload, backupResult.error);
+        }
       }
     });
 
