@@ -1380,26 +1380,12 @@
 
     // Tiny, separate beacon so we hear about a failed submission even when
     // the main payload itself is what failed to send (e.g. size-related).
+    // Disabled: the n8n workflow (F5x5Gcauh3Xmr76s) does not branch on `source`,
+    // so this alert was landing on the normal candidate path and creating a
+    // false 0/100 candidate + Monday cards. Re-enable only once n8n routes
+    // this source separately (pending on Yair's side).
     function sendFailureAlert(payload, error) {
-      try {
-        const bodyStr = JSON.stringify(payload);
-        const alertPayload = {
-          source: 'youngmedia_hr_questionnaire_failure_alert',
-          full_name: payload.full_name || '',
-          phone: payload.phone || '',
-          email: payload.email || '',
-          role: payload.role || '',
-          error_message: String((error && error.message) || error || 'unknown'),
-          payload_size_bytes: bodyStr.length,
-          submitted_at: new Date().toISOString()
-        };
-        fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(alertPayload),
-          keepalive: true
-        }).catch(() => {});
-      } catch (error) { /* best effort, never block the candidate on this */ }
+      console.warn('Submission failed after retries (alert beacon disabled pending n8n routing fix)', error);
     }
 
     // --- Autosave: candidates can leave and resume the questionnaire later ---
